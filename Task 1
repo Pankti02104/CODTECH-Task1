@@ -1,0 +1,30 @@
+def assess_password_strength(password):
+  """Assesses the strength of a password.
+
+  Args:
+    password: The password to be assessed.
+
+  Returns:
+    A strength rating (e.g., "weak", "medium", "strong").
+  """
+
+  # Check password length
+  if len(password) < 8:
+    return "weak"
+
+  # Check for complexity
+  has_upper = any(char.isupper() for char in password)
+  has_lower = any(char.islower() for char in password)
+  has_number = any(char.isdigit() for char in password)
+  has_special = any(not char.isalnum() for char in password)
+
+  if not all([has_upper, has_lower, has_number, has_special]):
+    return "medium"
+
+  # Check for uniqueness (optional)
+  # Implement a dictionary check or other methods to assess uniqueness
+
+  return "strong"
+password = input("Enter your password: ")
+strength = assess_password_strength(password)
+print("Password strength:", strength)
